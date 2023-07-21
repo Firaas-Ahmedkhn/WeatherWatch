@@ -2,8 +2,18 @@ import time
 import pyttsx3 
 import requests   
 
-city = 'Delhi'
-api_key = '2a4d09d3290b703880ae4903f2e4b956'
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[0].id)
+
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+city = 'Delhi' #Enter your city here
+api_key = '2a4d09d3290b703880ae4903f2e4b956' #Enter your API Key
 url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
 
 
@@ -14,14 +24,6 @@ temp = data['main']['temp']
 
 
 
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
-
-
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
 
 
 timestamp = time.strftime('%H:%M')
